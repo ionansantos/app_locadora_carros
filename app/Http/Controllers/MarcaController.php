@@ -42,23 +42,12 @@ class MarcaController extends Controller
     public function store(Request $request)
     {
         // $marca = Marca::create($request->all());
+        
         //nome
         //imagem
-
-        $regras = [
-            'nome' => 'required|unique:marcas',   // parametro unico dentro da table marcas , nao pode ter registro de marcas repetindo atributo nome
-            'imagem' => 'required' //
-        ];
-
-        $feedback = [
-            'require' => 'O campo :atribute é obrigatório',
-            'nome.unique' => 'O nome da marca ja existe'
-        ];
-
-        $request->validate($regras, $feedback);
-
-        //statless 
+        $request->validate($this->marca->rules(), $this->marca->feedback());
         
+        //statless 
         $marca = $this->marca->create($request->all());
         return response()->json($marca, 201);
     }
@@ -98,17 +87,33 @@ class MarcaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // print_r($request->all()); // dados atualizados
-        // echo '<hr>';
-        // print_r($marca->getAttributes()); // dados antigos
-        // $marca->update($request->all());
-
         $marca = $this->marca->find($id);
 
         if($marca === null) {
             return response()->json(['erro' => 'impossivel realizar a atualização. O recurso solicitado não existe'], 404);
         }
 
+            if($request->method() === 'PATCH') {
+
+                $regrasDinamicas = array();
+
+                // percorrendo todas as regras definida no model
+                foreach($marca->rules() as $input => $regra) {
+                    //coletar apenas as regras aplicaveis aos parametros parciais da requisição PATCH
+                    if(array_key_exists($input, $request->all())) {
+                        $regrasDinamicas[$input] = $regra;
+                    }
+                }
+                dd($regrasDinamicas);
+
+                dd($marca->rules());
+                $request->validate($regrasDinamicas, $marca->feedback());
+
+            } else {
+                $request->validate($marca->rules(), $marca->feedback());
+            }
+
+        $request->validate($marca->rules(), $marca->feedback());
         $marca->update($request->all());
         return response()->json($marca, 200);
     }
