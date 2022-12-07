@@ -19,15 +19,8 @@ class Modelo extends Model
         'abs',
     ];
 
-    public function rules() {
-        return  [
-            'marca_id' => 'exists:marcas,id',
-            'nome' => 'required|unique:modelos,nome,'.$this->id.'|min:3', 
-            'imagem' => 'required|file|mimes:png,jpeg',
-            'numero_portas' => 'required|integer|digits_between:1,5',
-            'lugares' => 'required|integer|digits_between:1,20',
-            'air_bag' => 'required|boolean',
-            'abs' => 'required|boolean'
-        ];
+       // relacionamento entre tabelas
+    public function marca() {
+        return $this->belongsTo('App\models\Marca');
     }
 }
