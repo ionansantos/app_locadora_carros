@@ -75,21 +75,19 @@ class ModeloController extends Controller
     public function update(ModeloRequest $request, $id)
     {
         $modelo = Modelo::find($id);
-        // dd($request->file('imagem'));
         if($modelo === null) {
             return response()->json(['erro' => 'impossivel realizar a atualização. O recurso solicitado não existe'], 404);
-        }
-
+        };
             // remove o arquivo antigo caso o novo arquivo tenha sido enviado no request
-            if($request->file('imagem')) {
-                Storage::disk('public')->delete($modelo->imagem);
-            }
+        if($request->file('imagem')) {
+            Storage::disk('public')->delete($modelo->imagem);
+        }
+        $imagem = $request->file('imagem');
+        $imagem_urn  = $imagem->store('imagens/modelos', 'public');
 
-            $imagem = $request->file('imagem');
-            $imagem_urn  = $imagem->store('imagens', 'public');
-
-            try {
-                $modelo->update([
+        try {
+            Modelo::where('id', $id)
+                ->update([
                     'marca_id' => $request->marca_id,
                     'nome' => $request->nome,
                     'imagem' => $imagem_urn,
@@ -98,11 +96,12 @@ class ModeloController extends Controller
                     'air_bag' => $request->air_bag,
                     'abs' => $request->abs
                 ]);
-            } catch (\Exception $e) {
-                return response()->json(['msg' => 'não foi possivel atualizar'], 422);
-            }
+            return response()->json(['msg' => 'Modelo atualiazdo com sucesso'], 422);
+        } catch (\Exception $e) {
+            return response()->json(['msg' => $e->getMessage()]);
+        }
 
-            return response()->json(['msg' => 'modelo atualizado com sucesso !'], 200);
+        return response()->json(['msg' => 'modelo atualizado com sucesso !'], 200);
     }
 
     /**
