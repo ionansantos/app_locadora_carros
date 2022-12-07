@@ -82,11 +82,17 @@ class MarcaController extends Controller
 
             $imagem = $request->file('imagem');
             $imagem_urn  = $imagem->store('imagens', 'public');
-
-            $marca->update([
-                'nome' => $request->nome,
-                'imagem' => $imagem_urn
-            ]);
+            
+            try {
+                Marca::where('id', $id)
+                    ->update([
+                        'nome' => $request->nome,
+                        'imagem' => $imagem_urn
+                    ]);
+                return response()->json(['msg' => 'Marca atualizada com sucesso'], 422);
+            } catch (\Exception $e) {
+                return response()->json(['msg' => $e->getMessage()]);
+            }
 
             return response()->json($marca, 200);
     }
