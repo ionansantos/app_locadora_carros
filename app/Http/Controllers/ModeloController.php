@@ -14,9 +14,28 @@ class ModeloController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $modelos = Modelo::with('marca')->get();
+        $modelos = array();
+
+        if($request->has('atributos_marca')){
+            $atributos_marca = $request->atributos_marca;
+            $modelos = Modelo::with('marca:id,'.$atributos_marca);
+        } else {
+            $modelos = Modelo::with('marca');
+        }
+
+        if($request->has('filtro')) {
+            $conditions = explode(':', $request->filtro);
+            $modelos = $modelos->where($conditions[0], $conditions[1], $conditions[2]);
+        }
+
+        if($request->has('atributos')) {
+            $atributos = $request->atributos;
+            $modelos = $modelos->selectRaw($atributos)->get();
+        } else {
+            $modelos = $modelos->get();
+        };
         return  response()->json($modelos, 200);
     }
         //all() cria obj de consulta + get = collection
