@@ -18,21 +18,25 @@ class ModeloController extends Controller
     {
         $modelos = array();
 
-        if($request->has('atributos_marca')){
-            $atributos_marca = $request->atributos_marca;
-            $modelos = Modelo::with('marca:id,'.$atributos_marca);
+        if($request->has('atributes_marca')){
+            $atributes_marca = $request->atributes_marca;
+            $modelos = Modelo::with('marca:id,'.$atributes_marca);
         } else {
             $modelos = Modelo::with('marca');
         }
 
-        if($request->has('filtro')) {
-            $conditions = explode(':', $request->filtro);
-            $modelos = $modelos->where($conditions[0], $conditions[1], $conditions[2]);
+        if($request->has('filter')) {
+
+            $filters = explode(';', $request->filter);
+            foreach($filters as $key => $conditions) {
+                $c = explode(':', $conditions);
+                $modelos = $modelos->where($c[0], $c[1], $c[2]);
+            }
         }
 
-        if($request->has('atributos')) {
-            $atributos = $request->atributos;
-            $modelos = $modelos->selectRaw($atributos)->get();
+        if($request->has('atributes')) {
+            $atributes = $request->atributes;
+            $modelos = $modelos->selectRaw($atributes)->get();
         } else {
             $modelos = $modelos->get();
         };
