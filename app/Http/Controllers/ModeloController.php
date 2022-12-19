@@ -6,9 +6,14 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Modelo;
 use Illuminate\Http\Request;
 use App\Http\Requests\ModeloRequest;
-
+use App\Repositories\ModeloRepository;
 class ModeloController extends Controller
 {
+
+    public function __construct(Modelo $modelo) {
+        $this->modelo = $modelo;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,34 +21,26 @@ class ModeloController extends Controller
      */
     public function index(Request $request)
     {
+        $modeloRepository = new ModeloRepository($this->modelo);
         $modelos = array();
 
         if($request->has('atributes_marca')){
-            $atributes_marca = $request->atributes_marca;
-            $modelos = Modelo::with('marca:id,'.$atributes_marca);
+            $atributes_modelos = 'modelos:id,'.$request->atributes->modelos;
+            $modeloRepository->selectAtributesRegisterRelated($atributes_modelos);
         } else {
-            $modelos = Modelo::with('marca');
+            $modeloRepository->selectAtributesRegisterRelated('marca');
         }
 
         if($request->has('filter')) {
-
-            $filters = explode(';', $request->filter);
-            foreach($filters as $key => $conditions) {
-                $c = explode(':', $conditions);
-                $modelos = $modelos->where($c[0], $c[1], $c[2]);
-            }
+            $modeloRepository->filter($request->filter);
         }
 
         if($request->has('atributes')) {
-            $atributes = $request->atributes;
-            $modelos = $modelos->selectRaw($atributes)->get();
-        } else {
-            $modelos = $modelos->get();
-        };
-        return  response()->json($modelos, 200);
+            $modeloRepository->selectAtributes($request->get('atributes'));
+        }
+        return  response()->json($modeloRepository->getResult(), 200);
     }
-        //all() cria obj de consulta + get = collection
-        // get() modifica  a consulta -> collection
+
     /**
      * Store a newly created resource in storage.
      *

@@ -6,9 +6,16 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Marca;
 use Illuminate\Http\Request;
 use App\Http\Requests\MarcaRequest;
+use App\Repositories\MarcaRepository;
+
+
 
 class MarcaController extends Controller
 {
+
+    public function __construct(Marca $marca) {
+        $this->marca = $marca;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,32 +23,30 @@ class MarcaController extends Controller
      */
     public function index(Request $request)
     {
+
+        $marcaRepository = new MarcaRepository($this->marca);
+
         $marcas = array();
         
         if($request->has('atributes_modelos')){
-            $atributes_modelos = $request->atributes_modelos;
-            $marcas = Marca::with('modelos:id,'.$atributes_modelos);
+            $atributes_modelos = 'modelos:id,'.$request->atributes_modelos;
+            $marcaRepository->selectAtributesRegisterRelated($atributes_modelos);
         } else {
             $marcas = Marca::with('modelos');
+            $marcaRepository->selectAtributesRegisterRelated('modelos');
         }
-
+    
         if($request->has('filter')){
-            $filters = explode(';', $request->filter);
+            $marcaRepository->filter($request->filter);
 
-            foreach($filters as $key => $conditions) {
-                $c = explode(':', $conditions);
-                $marcas = $marcas->where($c[0], $c[1], $c[2]);
-            }
         }
 
         if($request->has('atributes')) {
             $atributes = $request->atributes;
-            $marcas = $marcas->selectRaw($atributes)->get();
-        } else {
-            $marcas = $marcas->get();
-        };
+            $marcaRepository->selectAtributes($request->get('atributes'));
+        }
 
-        return response()->json($marcas, 200);
+        return response()->json($marcaRepository->getResult(), 200);
     }
 
     /**
