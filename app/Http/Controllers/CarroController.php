@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carro;
-use App\Http\Requests\StoreCarroRequest;
+use App\Http\Requests\CarroRequest;
 use App\Http\Requests\UpdateCarroRequest;
 
 class CarroController extends Controller
 {
+
+    public function __construct(Marca $carro) {
+        $this->carro = $carro;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,10 +35,10 @@ class CarroController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCarroRequest  $request
+     * @param  \App\Http\Requests\CarroRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCarroRequest $request)
+    public function store(CarroRequest $request)
     {
         //
     }
