@@ -21,6 +21,6 @@ class Modelo extends Model
 
        // relacionamento entre tabelas
     public function marca() {
-        return $this->belongsTo('App\models\Marca');
+        return $this->belongsTo('App\Models\Marca');
     }
 }

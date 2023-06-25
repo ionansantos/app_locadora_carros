@@ -25,8 +25,8 @@ class ModeloController extends Controller
         $modelos = array();
 
         if($request->has('atributes_marca')){
-            $atributes_modelos = 'modelos:id,'.$request->atributes->modelos;
-            $modeloRepository->selectAtributesRegisterRelated($atributes_modelos);
+            $atributes_marca = 'marca:id,'.$request->atributes_marca;
+            $modeloRepository->selectAtributesRegisterRelated($atributes_marca);
         } else {
             $modeloRepository->selectAtributesRegisterRelated('marca');
         }

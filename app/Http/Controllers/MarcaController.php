@@ -23,14 +23,13 @@ class MarcaController extends Controller
      */
     public function index(Request $request)
     {
-
         $marcaRepository = new MarcaRepository($this->marca);
 
         $marcas = array();
         
-        if($request->has('atributes_modelos')){
-            $atributes_modelos = 'modelos:id,'.$request->atributes_modelos;
-            $marcaRepository->selectAtributesRegisterRelated($atributes_modelos);
+        if($request->has('atributes_modelo')){
+            $atributes_modelo = 'modelos:id,'.$request->atributes_modelo;
+            $marcaRepository->selectAtributesRegisterRelated($atributes_modelo);
         } else {
             $marcas = Marca::with('modelos');
             $marcaRepository->selectAtributesRegisterRelated('modelos');
@@ -38,7 +37,6 @@ class MarcaController extends Controller
     
         if($request->has('filter')){
             $marcaRepository->filter($request->filter);
-
         }
 
         if($request->has('atributes')) {

@@ -16,6 +16,6 @@ class Marca extends Model
 
     // relacionamento entre tabelas
     public function modelos() {
-        return $this->hasMany('App\models\Modelo');
+        return $this->hasMany('App\Models\Modelo');
     }
 }
