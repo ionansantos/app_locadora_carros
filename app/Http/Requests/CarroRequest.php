@@ -13,7 +13,7 @@ class CarroRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,11 @@ class CarroRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        return  [
+            'modelo_id' => 'exists:modelos,id',
+            'placa' => 'required', 
+            'disponivel' => 'required',
+            'km' => 'required',
         ];
     }
 }

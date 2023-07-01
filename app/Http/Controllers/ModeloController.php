@@ -116,12 +116,10 @@ class ModeloController extends Controller
                     'air_bag' => $request->air_bag,
                     'abs' => $request->abs
                 ]);
-            return response()->json(['msg' => 'Modelo atualiazdo com sucesso'], 422);
+            return response()->json(['msg' => 'Modelo atualiazdo com sucesso'], 200);
         } catch (\Exception $e) {
             return response()->json(['msg' => $e->getMessage()]);
         }
-
-        return response()->json(['msg' => 'modelo atualizado com sucesso !'], 200);
     }
 
     /**

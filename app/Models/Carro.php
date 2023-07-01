@@ -18,6 +18,6 @@ class Carro extends Model
 
     // relacionamento entre tabelas
     public function modelo() {
-        return $this->belongsTo('App\Models\Carro');
+        return $this->belongsTo(Modelo::class);
     }
 }
