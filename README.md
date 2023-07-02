@@ -13,8 +13,8 @@ copie o arquivo .env-example renomeando para .env
 
 execute:
  - docker inspect database | grep IPAddress
- em seguida copie o valor de IPAddress no host do SGBD, 
- ou no proprio phpmyadmin em : http://localhost:8080 
+ em seguida copie o valor de IPAddress no DB_HOST no arquivo .env
+ você pode acessar o banco no phpmyadmin colocando apenas "root" usuário em : http://localhost:8080 
 
 ## rodando as migrations
 
