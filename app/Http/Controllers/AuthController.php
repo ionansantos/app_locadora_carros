@@ -2,46 +2,89 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\AuthLoginRequest;
+use App\Http\Requests\AuthRegisterRequest;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function login(Request $request) {
-        
-        $credentials = $request->all(['email', 'password']);
-     
-        $token = auth()->attempt($credentials);
-        
-        if($token === false){
-            return response()->json(['error' => 'Unauthorized'], 401);
+    /**
+     * Create User
+     * @param Request $request
+     * @return User 
+     */
+    public function createUser(AuthRegisterRequest $request)
+    {
+        try {
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+                return response()->json(['msg' => 'usuário cadastrado com sucesso!'], 201);
+        }  catch(\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ], 500);
         }
+    }
+
+    /**
+     * Login The User
+     * @param Request $request
+     * @return User
+     */
+    public function login(AuthLoginRequest $request)
+    {
+        $credentials = $request->only('email', 'password');
         
-        return $this->respondWithToken($token);
+        if(!auth()->attempt($credentials))
+            abort(401,' credenciais inválidas');
+        
+        $token = auth()->user()->createToken('auth_token');
 
+            return response()->json([
+                'status' => true,
+                'message' => 'Logado com sucesso !',
+                'token' => $token->plainTextToken
+            ], 200);
     
-        // if (auth()->attempt($credentials)) {
-        //     $user = Auth::user();
-        //     $token = $user->createToken('Your Token Name');
-        //     return $this->respondWithToken($token);
-        // } else {
-        //     return response()->json(['error' => 'Unauthorized'], 401);
+        // try {
+
+        //     if(!Auth::attempt($request->only(['email', 'password']))){
+        //         return response()->json([
+        //             'status' => false,
+        //             'message' => 'Email ou senha estão incorretos.',
+        //         ], 401);
+        //     }
+
+        //     $user = User::where('email', $request->email)->first();
+
+        //     return response()->json([
+        //         'status' => true,
+        //         'message' => 'Logado com sucesso !',
+        //         'token' => $user->createToken("API TOKEN")->plainTextToken
+        //     ], 200);
+
+        // } catch (\Throwable $th) {
+        //     return response()->json([
+        //         'status' => false,
+        //         'message' => $th->getMessage()
+        //     ], 500);
         // }
-
-        // $credentials = $request->all(['email', 'password']);
-
-        // $token = auth('api')->attempt($credentials);
-        // dd($token);
     }
 
-    public function logout() {
-        return 'logout';
-    }
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
 
-    public function refresh() {
-        return 'refresh';
-    }
-
-     public function me() {
-        return 'me';
+        return response()
+            ->json([], 204);
     }
 }
