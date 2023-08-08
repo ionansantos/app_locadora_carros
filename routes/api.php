@@ -24,8 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('auth')->group(function(){
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-    Route::post('register', [AuthController::class, 'createUser']);
 });
+Route::post('register', [AuthController::class, 'createUser']);
 
 Route::middleware('auth:sanctum')->group(function(){   
     
@@ -47,7 +47,5 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('carro/update/{id}', [CarroController::class, 'update']);
     Route::delete('carro/delete/{id}', [CarroController::class, 'destroy']);
 
-
-    
 });
 
