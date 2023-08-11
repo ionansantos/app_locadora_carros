@@ -64,23 +64,20 @@
 </template>
 
 <script>
-export default {
-    mounted() {
-        console.log('Component mounted.')
-    },
 
+export default {
     props: ['csrf_token'],
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
         }
     },
 
     methods: {
         login(e) {
             let url = 'http://localhost/api/auth/login';
-            let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content'); // Recupera o token CSRF
+            let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
             let config = {
                 method: 'post',
@@ -104,6 +101,5 @@ export default {
             e.target.submit()
         }
     }
-
 }
 </script>
