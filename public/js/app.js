@@ -5325,7 +5325,63 @@ var staticRenderFns = [function () {
     staticClass: "card-header"
   }, [_vm._v("Marcas")]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
-  }, [_vm._v("\n                    sessão marcas .\n                ")])])])])]);
+  }, [_c("form", [_c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "inputId"
+    }
+  }, [_vm._v("ID")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "number",
+      id: "inputId",
+      "aria-describedby": "idHelp"
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "form-text",
+    attrs: {
+      id: "idHelp"
+    }
+  }, [_vm._v("optional, informe o ID do registro.")])]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label",
+    attrs: {
+      "for": "inputNome"
+    }
+  }, [_vm._v("Nome")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "inputNome",
+      "aria-describedby": "nomeHelp"
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "form-text",
+    attrs: {
+      id: "nomeHelp"
+    }
+  }, [_vm._v("optional, informe o Nome da marca.")])]), _vm._v(" "), _c("div", {
+    staticClass: "mb-3 form-check"
+  }, [_c("input", {
+    staticClass: "form-check-input",
+    attrs: {
+      type: "checkbox",
+      id: "exampleCheck1"
+    }
+  }), _vm._v(" "), _c("label", {
+    staticClass: "form-check-label",
+    attrs: {
+      "for": "exampleCheck1"
+    }
+  }, [_vm._v("Check me out")])]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Pesquisar")])])])])])])]);
 }];
 render._withStripped = true;
 
