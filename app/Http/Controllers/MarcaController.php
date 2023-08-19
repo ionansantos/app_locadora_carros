@@ -115,7 +115,7 @@ class MarcaController extends Controller
                         'nome' => $request->nome,
                         'imagem' => $imagem_urn
                     ]);
-                return response()->json(['msg' => 'Marca atualizada com sucesso'], 422);
+                return response()->json(['msg' => 'Marca atualizada com sucesso'], 200);
             } catch (\Exception $e) {
                 return response()->json(['msg' => $e->getMessage()]);
             }

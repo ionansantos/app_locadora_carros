@@ -9,7 +9,7 @@ copie o arquivo .env-example renomeando para .env
 
  acesse em: http://localhost
 
-## configuração do banco no SGBD
+## configuração do banco
 
 execute:
  - docker inspect database | grep IPAddress
