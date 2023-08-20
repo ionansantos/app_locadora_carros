@@ -1,8 +1,15 @@
 {
+  "public/app-assets/images/portrait/small/avatar-s-11.jpg": {
+    "file": "assets/avatar-s-11.9d32c98c.jpg",
+    "src": "public/app-assets/images/portrait/small/avatar-s-11.jpg"
+  },
   "resources/js/app.js": {
-    "file": "assets/app.08a3cf16.js",
+    "file": "assets/app.fbc643e6.js",
     "src": "resources/js/app.js",
-    "isEntry": true
+    "isEntry": true,
+    "assets": [
+      "assets/avatar-s-11.9d32c98c.jpg"
+    ]
   },
   "resources/css/app.css": {
     "file": "assets/app.7c3c19f8.js",

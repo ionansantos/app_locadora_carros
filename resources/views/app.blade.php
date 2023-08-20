@@ -37,9 +37,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
     <!-- Page CSS-->
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/styles/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/styles/my-style.css') }}">
+    
+    <link rel="stylesheet" href="{{ asset('assets/styles/my-style.css') }}"> --}}
 
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/app-invoice-list.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/plugins/forms/form-wizard.css')}}">
@@ -62,6 +63,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="{{ asset('assets/js/jquery.js')}}"></script>
+    {{-- <script src="{{ asset('app-assets/js/core/app-menu.js') }}"></script> --}}
     
     <script>
      $(window).on('load', function() {
@@ -73,6 +75,6 @@
             }
           })
           
-          </script>
+    </script>
   </body>
 </html>
