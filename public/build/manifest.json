@@ -1,18 +1,18 @@
 {
-  "public/app-assets/images/portrait/small/avatar-s-11.jpg": {
-    "file": "assets/avatar-s-11.9d32c98c.jpg",
-    "src": "public/app-assets/images/portrait/small/avatar-s-11.jpg"
+  "resources/images/car-logo.webp": {
+    "file": "assets/car-logo.a17f34c2.webp",
+    "src": "resources/images/car-logo.webp"
   },
   "resources/js/app.js": {
-    "file": "assets/app.fbc643e6.js",
+    "file": "assets/app.9bcf5db3.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "assets": [
-      "assets/avatar-s-11.9d32c98c.jpg"
+      "assets/car-logo.a17f34c2.webp"
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app.7c3c19f8.js",
+    "file": "assets/app.aa665b78.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }

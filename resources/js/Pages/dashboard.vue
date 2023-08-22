@@ -1,9 +1,7 @@
 <template>
-    <div class="vertical-layout vertical-menu-modern  navbar-floating footer-static   menu-collapsed" data-open="click"
-        data-menu="vertical-menu-modern" data-col="">
+    <div>
         <!-- BEGIN: Header-->
-        <nav
-            class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
+        <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow">
             <div class="navbar-container d-flex content">
                 <div class="bookmark-wrapper d-flex align-items-center">
                     <ul class="nav navbar-nav d-xl-none">
@@ -20,9 +18,8 @@
                             id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder">John Doe</span><span
-                                    class="user-status">Admin</span></div><span class="avatar"><img class="round"
-                                    src="../../../public/app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar"
-                                    height="40" width="40"><span class="avatar-status-online"></span></span>
+                                    class="user-status">Admin</span></div><span class="avatar"><img class="round" src=""
+                                    alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user"><a
                                 class="dropdown-item" href="#"><i class="me-50" data-feather="user"></i> Profile</a><a
@@ -47,21 +44,20 @@
             <div class="navbar-header">
                 <ul class="nav navbar-nav flex-row">
                     <li class="nav-item me-auto"><a class="navbar-brand"
-                            href="../../../starter-kit/ltr/vertical-menu-template/">
-                            <span class="brand-logo">
-                                <svg viewBox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            href="../../../starter-kit/ltr/vertical-collapsed-menu-template/"><span class="brand-logo">
+                                <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
                                     <defs>
-                                        <linearGradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%"
+                                        <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%"
                                             y2="89.4879456%">
                                             <stop stop-color="#000000" offset="0%"></stop>
                                             <stop stop-color="#FFFFFF" offset="100%"></stop>
-                                        </linearGradient>
-                                        <linearGradient id="linearGradient-2" x1="64.0437835%" y1="46.3276743%"
+                                        </lineargradient>
+                                        <lineargradient id="linearGradient-2" x1="64.0437835%" y1="46.3276743%"
                                             x2="37.373316%" y2="100%">
                                             <stop stop-color="#EEEEEE" stop-opacity="0" offset="0%"></stop>
                                             <stop stop-color="#FFFFFF" offset="100%"></stop>
-                                        </linearGradient>
+                                        </lineargradient>
                                     </defs>
                                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                         <g id="Artboard" transform="translate(-400.000000, -178.000000)">
@@ -108,7 +104,7 @@
                                         data-feather="circle"></i><span class="menu-item text-truncate"
                                         data-i18n="Collapsed Menu">Collapsed Menu</span></a>
                             </li>
-                            <li><a class="d-flex align-items-center" href="layout-full.html"><i
+                            <li class="active"><a class="d-flex align-items-center" href="layout-full.html"><i
                                         data-feather="circle"></i><span class="menu-item text-truncate"
                                         data-i18n="Layout Full">Layout Full</span></a>
                             </li>
@@ -116,7 +112,7 @@
                                         data-feather="circle"></i><span class="menu-item text-truncate"
                                         data-i18n="Without Menu">Without Menu</span></a>
                             </li>
-                            <li class="active"><a class="d-flex align-items-center" href="layout-empty.html"><i
+                            <li><a class="d-flex align-items-center" href="layout-empty.html"><i
                                         data-feather="circle"></i><span class="menu-item text-truncate"
                                         data-i18n="Layout Empty">Layout Empty</span></a>
                             </li>
@@ -135,19 +131,19 @@
         <div class="app-content content ">
             <div class="content-overlay"></div>
             <div class="header-navbar-shadow"></div>
-            <div class="content-wrapper container-xxl p-0">
+            <div class="content-wrapper">
                 <div class="content-header row">
                     <div class="content-header-left col-md-9 col-12 mb-2">
                         <div class="row breadcrumbs-top">
                             <div class="col-12">
-                                <h2 class="content-header-title float-start mb-0">Layout Empty</h2>
+                                <h2 class="content-header-title float-start mb-0">Layout Full</h2>
                                 <div class="breadcrumb-wrapper">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Home</a>
                                         </li>
                                         <li class="breadcrumb-item"><a href="#">Layouts</a>
                                         </li>
-                                        <li class="breadcrumb-item active">Layout Empty
+                                        <li class="breadcrumb-item active">Layout Full
                                         </li>
                                     </ol>
                                 </div>
@@ -178,18 +174,17 @@
                         <div class="col-12">
                             <div class="alert alert-primary" role="alert">
                                 <div class="alert-body">
-                                    <strong>Info:</strong> This layout can be useful for getting started with empty content
-                                    section. Please check
-                                    the&nbsp;<a class="text-primary"
-                                        href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation/documentation-layout-empty.html"
-                                    target="_blank">Layout empty documentation</a>&nbsp; for more details.
+                                    <strong>Info:</strong> Please check the&nbsp;<a class="text-primary"
+                                        href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation/documentation-layout-full.html"
+                                        target="_blank">Layout full documentation</a>&nbsp; for more details.
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
+        <!-- END: Content-->
     </div>
-    <!-- END: Content-->
-</div></template>
+</template>

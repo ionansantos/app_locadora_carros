@@ -14,6 +14,7 @@
     },
     "dependencies": {
         "@inertiajs/vue3": "^1.0.10",
-        "feather-icons": "^4.29.0"
+        "feather-icons": "^4.29.0",
+        "jquery": "^3.6.3"
     }
 }

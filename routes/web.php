@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::get('/login', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store']);
+Route::post('/register', [AuthController::class, 'createUser'])->name('register');
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
