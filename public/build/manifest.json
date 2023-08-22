@@ -1,0 +1,19 @@
+{
+  "resources/images/car-logo.webp": {
+    "file": "assets/car-logo.a17f34c2.webp",
+    "src": "resources/images/car-logo.webp"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app.9bcf5db3.js",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "assets": [
+      "assets/car-logo.a17f34c2.webp"
+    ]
+  },
+  "resources/css/app.css": {
+    "file": "assets/app.aa665b78.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  }
+}

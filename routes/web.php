@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;  
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::get('/login', [AuthController::class, 'create'])->name('login');
+Route::post('/login', [AuthController::class, 'store']);
+Route::post('/register', [AuthController::class, 'createUser'])->name('register');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth:sanctum'])->group(function () {
 
-Auth::routes();
+    Route::inertia('/dashboard', 'dashboard');
 
-Route::get('/marcas', function() {
-    return view('app.marcas');
-})->name('marcas')->middleware('auth');
+});

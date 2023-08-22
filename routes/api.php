@@ -17,16 +17,11 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+// Route::post('register', [AuthController::class, 'createUser']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::prefix('auth')->group(function(){
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-});
-Route::post('register', [AuthController::class, 'createUser']);
-
 Route::middleware('auth:sanctum')->group(function(){   
     
     Route::get('marca', [MarcaController::class, 'index']);
@@ -46,6 +41,5 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('carro/create', [CarroController::class, 'store']);
     Route::post('carro/update/{id}', [CarroController::class, 'update']);
     Route::delete('carro/delete/{id}', [CarroController::class, 'destroy']);
-
 });
 

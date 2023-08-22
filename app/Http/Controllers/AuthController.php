@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -35,50 +36,43 @@ class AuthController extends Controller
         }
     }
 
+
+
+    public function create() 
+    {   
+        return Inertia::render('login');
+    }
+
     /**
      * Login The User
      * @param Request $request
      * @return User
      */
-    public function login(AuthLoginRequest $request)
+    public function store(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+    
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ 
+            $token = auth()->user()->createToken('auth_token');
         
-        if(!auth()->attempt($credentials))
-            abort(401,' credenciais inválidas');
-        
-        $token = auth()->user()->createToken('auth_token');
-
             return response()->json([
                 'status' => true,
                 'message' => 'Logado com sucesso !',
                 'token' => $token->plainTextToken
             ], 200);
-    
-        // try {
+        }
 
-        //     if(!Auth::attempt($request->only(['email', 'password']))){
-        //         return response()->json([
-        //             'status' => false,
-        //             'message' => 'Email ou senha estão incorretos.',
-        //         ], 401);
-        //     }
-
-        //     $user = User::where('email', $request->email)->first();
-
-        //     return response()->json([
-        //         'status' => true,
-        //         'message' => 'Logado com sucesso !',
-        //         'token' => $user->createToken("API TOKEN")->plainTextToken
-        //     ], 200);
-
-        // } catch (\Throwable $th) {
-        //     return response()->json([
-        //         'status' => false,
-        //         'message' => $th->getMessage()
-        //     ], 500);
-        // }
+        return response()->json([
+            'status' => false,
+            'message' => 'Credenciais inválidas',
+        ], 401);
     }
+
 
     public function logout(Request $request)
     {
