@@ -24,7 +24,9 @@ Route::post('/login', [AuthController::class, 'store']);
 Route::post('/register', [AuthController::class, 'createUser'])->name('register');
 
 Route::middleware(['auth:sanctum'])->group(function () {
-
     Route::inertia('/dashboard', 'dashboard');
-
+    Route::inertia('/marcas', 'marcas');
+    Route::inertia('/modelos', 'modelos');
+    Route::inertia('/carros', 'carros');
+    Route::inertia('/locacoes', 'locacoes');
 });

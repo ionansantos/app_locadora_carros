@@ -13,7 +13,7 @@
         "vite": "^3.2.5"
     },
     "dependencies": {
-        "@inertiajs/vue3": "^1.0.10",
+        "@inertiajs/vue3": "^1.0.11",
         "feather-icons": "^4.29.0",
         "jquery": "^3.6.3"
     }
