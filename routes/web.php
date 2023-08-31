@@ -16,12 +16,11 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function() {
-    return redirect()->route('login');
+    return redirect('login');
 });
 
-Route::get('/login', [AuthController::class, 'create'])->name('login');
-Route::post('/login', [AuthController::class, 'store']);
-Route::post('/register', [AuthController::class, 'createUser'])->name('register');
+Route::inertia('/register', 'register');
+Route::inertia('/login', 'login');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::inertia('/dashboard', 'dashboard');

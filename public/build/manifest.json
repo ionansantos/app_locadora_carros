@@ -3,12 +3,17 @@
     "file": "assets/car-logo.a17f34c2.webp",
     "src": "resources/images/car-logo.webp"
   },
+  "resources/images/car-logo-reg.webp": {
+    "file": "assets/car-logo-reg.457fcf69.webp",
+    "src": "resources/images/car-logo-reg.webp"
+  },
   "resources/js/app.js": {
-    "file": "assets/app.9d8d3a83.js",
+    "file": "assets/app.0d5f2e39.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "assets": [
-      "assets/car-logo.a17f34c2.webp"
+      "assets/car-logo.a17f34c2.webp",
+      "assets/car-logo-reg.457fcf69.webp"
     ]
   },
   "resources/css/app.css": {

@@ -27,20 +27,17 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password)
             ]);
-                return response()->json(['msg' => 'usuário cadastrado com sucesso!'], 201);
+                return response()->json([
+                    'status' => true,
+                    'msg' => 'usuário cadastrado com sucesso!'
+                ], 201);
+
         }  catch(\Exception $e) {
             return response()->json([
                 'status' => false,
                 'message' => $e->getMessage()
             ], 500);
         }
-    }
-
-
-
-    public function create() 
-    {   
-        return Inertia::render('login');
     }
 
     /**

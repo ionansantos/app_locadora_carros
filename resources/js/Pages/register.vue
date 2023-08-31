@@ -10,11 +10,17 @@
                                     <div class="card-body p-md-5 mx-md-4">
 
                                         <div class="text-center">
-                                            <img src="../../images/car-logo.webp" style="width: 185px;" alt="logo">
+                                            <img src="../../images/car-logo-reg.webp" style="width: 185px;" alt="logo">
                                             <h4 class="mt-1 mb-5 pb-1">Bem vindo a Locamais</h4>
                                         </div>
 
                                         <form method="POST" @submit.prevent="submit">
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="form2Example11">Nome</label>
+                                                <input type="name" id="name" class="form-control" v-model="form.name"
+                                                    name="name" aria-describedby="name" placeholder="john Doe" />
+                                            </div>
+
                                             <div class="form-outline mb-4">
                                                 <label class="form-label" for="form2Example11">Email</label>
                                                 <input type="email" id="email" class="form-control" v-model="form.email"
@@ -29,14 +35,15 @@
 
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-                                                    type="submit">Pronto</button>
+                                                    type="submit">Cadastrar</button>
                                                 <!-- <a class="text-muted mb-4 mx-auto" href="#!">Forgot password?</a> -->
                                             </div>
 
                                             <div class="d-flex align-items-center justify-content-center pb-4">
-                                                <p class="mb-0 me-2">Não tem uma conta?</p>
-                                                <Link href="/register" as="button" type="button"
-                                                    class="btn btn-outline-danger">Criar nova</Link>
+                                                <p class="mb-0 me-2">ja possui uma conta?</p>
+                                                <Link href="/login" as="button" type="button"
+                                                    class="btn btn-outline-danger">Faça
+                                                Login</Link>
                                             </div>
 
                                         </form>
@@ -68,19 +75,21 @@ import { Link, useForm } from '@inertiajs/vue3';
 import axios from '../plugins/axios';
 
 let form = useForm({
+    name: '',
     email: '',
     password: ''
 });
 
 let submit = () => {
-    axios.post('/login', {
+    axios.post('/register', {
+        name: form.name,
         email: form.email,
         password: form.password
     })
         .then(response => {
             if (response.data.status === true) {
                 // Redirecionar para a dashboard
-                window.location.href = '/dashboard';
+                window.location.href = '/login';
             } else {
                 // Lidar com credenciais inválidas
             }
@@ -90,45 +99,5 @@ let submit = () => {
         });
 };
 
-// export default {
-
-//     props: ['csrf_token'],
-//     data() {
-//         return {
-//             email: '',
-//             password: '',
-//         }
-//     },
-
-//     methods: {
-//         async login(e) {
-//             // let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-//             let headers = {
-//                 'Content-Type': 'application/x-www-form-urlencoded',
-//                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//             }
-
-//             let data = new URLSearchParams({
-//                 'email': this.email,
-//                 'password': this.password
-//             })
-
-//             try {
-//                 let response = await axiosApi.post('/auth/login', data, { headers });
-//                 let responseData = response.data
-
-//                 if (responseData.token) {
-//                     document.cookie = 'token=' + responseData.token + ';SameSite=Lax';
-//                 }
-
-//                 e.target.submit()
-
-//             } catch (error) {
-//                 console.error('Erro durante a solicitação:', error);
-//             }
-//         }
-//     }
-// }
 
 </script>
