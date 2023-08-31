@@ -57,7 +57,7 @@ class AuthController extends Controller
     
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
+
             $token = auth()->user()->createToken('auth_token');
         
             return response()->json([
@@ -76,9 +76,12 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        Auth::guard('sanctum')->user()->tokens()->delete();
 
-        return response()
-            ->json([], 204);
+        $request->session()->invalidate();
+        
+        $request->session()->regenerateToken();
+        
+        return redirect('/');
     }
 }

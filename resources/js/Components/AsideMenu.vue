@@ -65,7 +65,9 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="#">Perfil</a></li>
                     <li><a class="dropdown-item" href="#">Editar</a></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                    <li>
+                        <Link href="/api/logout" method="post" as="button" type="button" class="dropdown-item">Logout</Link>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -85,12 +87,12 @@
                     </a>
                 </li>
                 <li class="sidebar-menu-divider mt-3 mb-1 text-uppercase">Custom</li>
-                <li class="sidebar-menu-item has-dropdown">
-                    <Link href="/modelos">
-                    <i class="ri-award-line sidebar-menu-item-icon"></i>
-                    Modelos
-                    <!-- <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i> -->
-                    </Link>
+                <li class="sidebar-menu-item">
+                    <a href="/modelos">
+                        <i class="ri-award-line sidebar-menu-item-icon"></i>
+                        Modelos
+                        <!-- <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i> -->
+                    </a>
                     <!-- <ul class="sidebar-dropdown-menu">
                         <li class="sidebar-dropdown-menu-item">
                             <a href="#">
@@ -170,7 +172,7 @@
                         </li> -->
                     <!-- </ul> -->
                 </li>
-                <li class="sidebar-menu-item has-dropdown">
+                <li class="sidebar-menu-item">
                     <a href="/carros">
                         <i class="ri-car-line sidebar-menu-item-icon"></i>
                         Carros
@@ -210,11 +212,11 @@
                     </ul> -->
                 </li>
                 <li class="sidebar-menu-item">
-                    <Link href="/marcas">
-                    <i class="ri-honour-line sidebar-menu-item-icon"></i>
-                    Marcas
-                    <!-- <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i> -->
-                    </Link>
+                    <a href="/marcas">
+                        <i class="ri-honour-line sidebar-menu-item-icon"></i>
+                        Marcas
+                        <!-- <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i> -->
+                    </a>
                     <!-- <ul class="sidebar-dropdown-menu">
                         <li class="sidebar-dropdown-menu-item">
                             <a href="#">
@@ -228,7 +230,7 @@
                         </li>
                     </ul> -->
                 </li>
-                <li class="sidebar-menu-item has-dropdown">
+                <li class="sidebar-menu-item">
                     <a href="/locacoes">
                         <i class="ri-map-pin-time-line sidebar-menu-item-icon"></i>
                         Locações

@@ -23,7 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::middleware('auth:sanctum')->group(function(){   
-    
+
+    Route::post('logout', [AuthController::class, 'logout']);
+
     Route::get('marca', [MarcaController::class, 'index']);
     Route::get('marca/get/{id}', [MarcaController::class, 'show']);
     Route::post('marca/create', [MarcaController::class, 'store']);
