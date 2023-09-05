@@ -20,7 +20,7 @@ Route::get('/', function() {
 });
 
 Route::inertia('/register', 'register');
-Route::inertia('/login', 'login');
+Route::inertia('/login', 'login')->name('login');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::inertia('/dashboard', 'dashboard');
@@ -28,4 +28,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::inertia('/modelos', 'modelos');
     Route::inertia('/carros', 'carros');
     Route::inertia('/locacoes', 'locacoes');
+});
+
+
+Route::fallback(function () {
+    return view('error'); // Substitua 'errors.404' pelo nome da sua página personalizada 404
 });

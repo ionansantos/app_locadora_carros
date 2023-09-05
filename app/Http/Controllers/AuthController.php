@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\AuthLoginRequest;
 use App\Http\Requests\AuthRegisterRequest;
 use Illuminate\Support\Facades\Validator;
+use App\DataObjects\ResponseDataObject;
 
 class AuthController extends Controller
 {
@@ -45,18 +46,16 @@ class AuthController extends Controller
      * @param Request $request
      * @return User
      */
-    public function store(Request $request)
+    public function store(AuthLoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-    
+        $credentials = $request->only('email', 'password');
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
             $token = auth()->user()->createToken('auth_token');
-        
+            return Auth::user();
+
             return response()->json([
                 'status' => true,
                 'message' => 'Logado com sucesso !',
@@ -66,7 +65,7 @@ class AuthController extends Controller
 
         return response()->json([
             'status' => false,
-            'message' => 'Credenciais inválidas',
+            'message' => 'Ops! Usuário incorreto!, verifique seu email e senha.',
         ], 401);
     }
 

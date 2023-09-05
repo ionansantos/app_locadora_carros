@@ -72,7 +72,10 @@
 
 <script setup>
 import { Link, useForm } from '@inertiajs/vue3';
+import { createToaster } from "@meforma/vue-toaster";
 import axios from '../plugins/axios';
+
+const toaster = createToaster({ /* options */ });
 
 let form = useForm({
     name: '',
@@ -90,12 +93,11 @@ let submit = () => {
             if (response.data.status === true) {
                 // Redirecionar para a dashboard
                 window.location.href = '/login';
-            } else {
-                // Lidar com credenciais inválidas
             }
         })
         .catch(error => {
             // Lidar com erros
+            toaster.error(error.response.data.message);
         });
 };
 

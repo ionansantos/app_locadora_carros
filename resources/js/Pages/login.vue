@@ -17,14 +17,14 @@
                                         <form method="POST" @submit.prevent="submit">
                                             <div class="form-outline mb-4">
                                                 <label class="form-label" for="form2Example11">Email</label>
-                                                <input type="email" id="email" class="form-control" v-model="form.email"
+                                                <input type="email" id="email" class="form-control" v-model="email"
                                                     name="email" aria-describedby="email" placeholder="john@example.com" />
                                             </div>
 
                                             <div class="form-outline mb-4">
                                                 <label class="form-label" for="form2Example22">Senha</label>
                                                 <input type="password" id="password" name="password" class="form-control"
-                                                    required v-model="form.password" aria-describedby="password" />
+                                                    required v-model="password" aria-describedby="password" />
                                             </div>
 
                                             <div class="d-grid gap-2">
@@ -65,70 +65,41 @@
 
 <script setup>
 import { Link, useForm } from '@inertiajs/vue3';
-import axios from '../plugins/axios';
+import { ref, watch, onMounted, computed } from 'vue'
+import userStore from '../store/user';
 
-let form = useForm({
-    email: '',
-    password: ''
-});
 
-let submit = () => {
-    axios.post('/login', {
-        email: form.email,
-        password: form.password
-    })
-        .then(response => {
-            if (response.data.status === true) {
-                // Redirecionar para a dashboard
-                window.location.href = '/dashboard';
-            } else {
-                // Lidar com credenciais inválidas
-            }
-        })
-        .catch(error => {
-            // Lidar com erros
-        });
-};
+const email = ref("")
+const password = ref("")
 
-// export default {
+function submit(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('email', email.value);
+    formData.append('password', password.value);
 
-//     props: ['csrf_token'],
-//     data() {
-//         return {
-//             email: '',
-//             password: '',
-//         }
-//     },
+    userStore.dispatch('login', formData);
+}
 
-//     methods: {
-//         async login(e) {
-//             // let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-//             let headers = {
-//                 'Content-Type': 'application/x-www-form-urlencoded',
-//                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+// let submit = () => {
+//     axios.post('/login', {
+//         email: form.email,
+//         password: form.password
+//     })
+//         .then(response => {
+//             if (response.data.status === true) {
+//                 // Redirecionar para a dashboard
+//                 window.location.href = '/dashboard';
 //             }
-
-//             let data = new URLSearchParams({
-//                 'email': this.email,
-//                 'password': this.password
-//             })
-
-//             try {
-//                 let response = await axiosApi.post('/auth/login', data, { headers });
-//                 let responseData = response.data
-
-//                 if (responseData.token) {
-//                     document.cookie = 'token=' + responseData.token + ';SameSite=Lax';
-//                 }
-
-//                 e.target.submit()
-
-//             } catch (error) {
-//                 console.error('Erro durante a solicitação:', error);
-//             }
-//         }
-//     }
-// }
-
+//             console.log(response);
+//         })
+//         .catch(error => {
+//             //lidar com erros
+//             toaster.error(error.response.data.message, {
+//                 duration: 4000,
+//                 position: "bottom-right",
+//             });
+//         });
+// };
 </script>
