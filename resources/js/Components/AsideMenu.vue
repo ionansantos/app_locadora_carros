@@ -57,7 +57,7 @@
             <div class="dropdown">
                 <div class="d-flex align-items-center cursor-pointer dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    <span class="me-2 d-none d-sm-block">Ionan Santos</span>
+                    <span class="me-2 d-none d-sm-block"> {{ user['name'] }}</span>
                     <img class="navbar-profile-image"
                         src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                         alt="Image">
@@ -299,7 +299,16 @@
 </template>
 
 <script setup>
+import { useStore, createStore } from 'vuex';
 import { Link } from '@inertiajs/vue3'
+import axios from '../plugins/axios';
+import { ref, watch, onMounted, computed } from 'vue'
+import storeUser from '../store/user'
 
+onMounted(() => {
+    storeUser.dispatch('getUser');
+})
+
+const user = computed(() => storeUser.state.user)
 
 </script>

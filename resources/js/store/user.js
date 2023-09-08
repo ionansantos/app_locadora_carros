@@ -6,7 +6,7 @@ const toaster = createToaster({ /* options */ });
 
 const store = createStore({
     state: {
-        user: null,
+        user: {} // Defina o estado inicial do usuário como null ou vazio
     },
     mutations: {
         setUser(state, user) {
@@ -17,11 +17,10 @@ const store = createStore({
         login({ commit }, formData) {
             return axios.post('/login', formData)
                 .then(response => {
-                    console.log(response.data);
-                    if (response.data.status === true) {
-                        // Redirecionar para a dashboard
-                        // window.location.href = '/dashboard';
+                    if (response.data.type === "success") {
                         commit('setUser', response.data.user);
+                        // Redirecionar para a dashboard
+                        window.location.href = '/dashboard';
                         return true;
                     }
                     return false;
@@ -34,6 +33,16 @@ const store = createStore({
                     return false;
                 });
         },
+        getUser({ commit }) {
+            return axios.get('/user')
+                .then(response => {
+                    commit("setUser", response.data)
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.log(error, 'erro na requisicao get');
+                })
+        }
     }
 });
 

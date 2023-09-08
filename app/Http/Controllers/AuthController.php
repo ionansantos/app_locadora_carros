@@ -12,9 +12,18 @@ use App\Http\Requests\AuthLoginRequest;
 use App\Http\Requests\AuthRegisterRequest;
 use Illuminate\Support\Facades\Validator;
 use App\DataObjects\ResponseDataObject;
+use App\Domain\ResponseTypeDomain;
 
 class AuthController extends Controller
 {
+
+    private ResponseDataObject $ResponseDataObject;
+    
+    public function __construct() 
+    {
+        $this->ResponseDataObject = new ResponseDataObject;
+    }
+
     /**
      * Create User
      * @param Request $request
@@ -50,24 +59,30 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
 
-            $token = auth()->user()->createToken('auth_token');
-            return Auth::user();
+                $user = Auth::user(); // Obter o usuário autenticado
+                
+                $token = $user->createToken('auth_token')->plainTextToken;
 
-            return response()->json([
-                'status' => true,
-                'message' => 'Logado com sucesso !',
-                'token' => $token->plainTextToken
-            ], 200);
-        }
+                $this->ResponseDataObject->setData([
+                    'user' => $user,
+                    'token' => $token
+                ]);
 
-        return response()->json([
-            'status' => false,
-            'message' => 'Ops! Usuário incorreto!, verifique seu email e senha.',
-        ], 401);
+                return $this->ResponseDataObject->response();
+            }
+
+            $this->ResponseDataObject->setError(true);
+            $this->ResponseDataObject->setTitle('Atenção!');
+            $this->ResponseDataObject->setMessage('Usuário e/ou senha inválidos.');
+            $this->ResponseDataObject->setType(ResponseTypeDomain::ERROR);
+            $this->ResponseDataObject->setErrorCode(401);
+    
+            return $this->ResponseDataObject->response();
     }
+
 
 
     public function logout(Request $request)

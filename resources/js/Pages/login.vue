@@ -80,8 +80,6 @@ function submit(e) {
 
     userStore.dispatch('login', formData);
 }
-
-
 // let submit = () => {
 //     axios.post('/login', {
 //         email: form.email,
