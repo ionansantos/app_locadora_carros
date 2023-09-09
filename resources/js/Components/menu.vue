@@ -3,7 +3,7 @@
         <!-- start: Navbar -->
         <nav class="px-3 py-2 bg-white rounded shadow-sm">
             <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
-            <h5 class="fw-bold mb-0 me-auto">Dashboard</h5>
+            <h5 class="fw-bold mb-0 me-auto">{{ pageTitle }}</h5>
             <div class="dropdown me-3 d-none d-sm-block">
                 <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="ri-notification-line"></i>
@@ -63,8 +63,8 @@
                         alt="Image">
                 </div>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Perfil</a></li>
-                    <li><a class="dropdown-item" href="#">Editar</a></li>
+                    <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
+                    <!-- <li><a class="dropdown-item" href="#">Editar</a></li> -->
                     <li>
                         <Link href="/api/logout" method="post" as="button" type="button" class="dropdown-item">Logout
                         </Link>
@@ -78,8 +78,12 @@
 import { useStore, createStore } from 'vuex';
 import { Link } from '@inertiajs/vue3'
 import axios from '../plugins/axios';
-import { ref, watch, onMounted, computed } from 'vue'
+import { ref, watch, onMounted, computed, defineProps } from 'vue'
 import storeUser from '../store/user'
+
+defineProps({
+    pageTitle: String
+})
 
 onMounted(() => {
     storeUser.dispatch('getUser');

@@ -4,6 +4,8 @@
         <main>
             <Menu />
             <h2>perfil aqui</h2>
+            <p class="text-dark">a ideia e ter uma page para edicao de perfil tanto para admin quanto para cliente
+                controlando a exibição de certas funcionalidades</p>
         </main>
         <!-- end: Navbar -->
     </div>
