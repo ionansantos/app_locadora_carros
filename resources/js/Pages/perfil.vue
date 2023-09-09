@@ -3,7 +3,7 @@
         <sideMenu />
         <main>
             <Menu />
-            <h2>dashboard aqui</h2>
+            <h2>perfil aqui</h2>
         </main>
         <!-- end: Navbar -->
     </div>

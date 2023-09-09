@@ -260,7 +260,6 @@ body {
 /* start: Main */
 main {
     padding-left: 0;
-    min-height: 100vh;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -431,6 +430,7 @@ nav {
     .sidebar.collapsed~main {
         padding-left: 4.75rem;
     }
+
 
     /* end: Main */
 }

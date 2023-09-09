@@ -1,17 +1,23 @@
 <template>
     <div>
-        <main class="bg-light">
-            <AsideMenu />
-            <h2>aqui e modelos</h2>
+        <sideMenu />
+        <main>
+            <Menu />
+            <h2>modelos aqui</h2>
         </main>
+        <!-- end: Navbar -->
     </div>
 </template>
+
 <script>
-import AsideMenu from '../Components/AsideMenu.vue';
+import SideMenu from '../Components/sideMenu.vue';
+import Menu from '../Components/menu.vue';
 
 export default {
     components: {
-        AsideMenu
+        SideMenu,
+        Menu
     }
 }
+
 </script>

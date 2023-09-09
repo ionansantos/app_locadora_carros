@@ -23,6 +23,10 @@ Route::inertia('/register', 'register');
 Route::inertia('/login', 'login')->name('login');
 
 Route::middleware(['auth:sanctum'])->group(function () {
+
+    // rota perfil usuario
+    Route::inertia('/perfil', 'perfil');
+
     Route::inertia('/dashboard', 'dashboard');
     Route::inertia('/marcas', 'marcas');
     Route::inertia('/modelos', 'modelos');

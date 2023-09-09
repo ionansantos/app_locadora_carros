@@ -8,7 +8,7 @@
     "src": "resources/images/car-logo-reg.webp"
   },
   "resources/js/app.js": {
-    "file": "assets/app.23dded4c.js",
+    "file": "assets/app.ce29ded5.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
@@ -19,13 +19,13 @@
       "assets/car-logo-reg.457fcf69.webp"
     ]
   },
-  "resources/js/app.css": {
-    "file": "assets/app.41045d4d.css",
-    "src": "resources/js/app.css"
-  },
   "resources/css/app.css": {
     "file": "assets/app.aa665b78.css",
     "src": "resources/css/app.css",
     "isEntry": true
+  },
+  "resources/js/app.css": {
+    "file": "assets/app.41045d4d.css",
+    "src": "resources/js/app.css"
   }
 }

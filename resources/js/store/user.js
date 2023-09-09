@@ -40,7 +40,7 @@ const store = createStore({
                     console.log(response.data);
                 })
                 .catch((error) => {
-                    console.log(error, 'erro na requisicao get');
+                    console.log(error, 'hummmm cheirinho de bug :p');
                 })
         }
     }
