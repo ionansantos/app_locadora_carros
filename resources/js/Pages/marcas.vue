@@ -23,6 +23,8 @@
 <script>
 import SideMenu from '../Components/sideMenu.vue';
 import Menu from '../Components/menu.vue';
+import marcaStore from ''
+
 
 export default {
     components: {
