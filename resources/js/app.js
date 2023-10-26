@@ -4,7 +4,6 @@ import { createStore } from 'vuex'
 import Toaster from "@meforma/vue-toaster";
 
 const store = createStore({
-
 })
 
 

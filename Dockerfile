@@ -31,7 +31,4 @@ COPY /apache/apache2.conf /etc/apache2
 RUN rm -f /etc/apache2/sites-available/000-default.conf
 COPY /apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 
-# RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache && \
-#     chmod -R 775 /var/www/storage /var/www/bootstrap/cache
-
 USER $user

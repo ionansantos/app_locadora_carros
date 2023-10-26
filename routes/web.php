@@ -16,8 +16,10 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function() {
-    return redirect('login');
+    return redirect('home');
 });
+
+Route::inertia('/home', 'home')->name('home');
 
 Route::inertia('/register', 'register');
 Route::inertia('/login', 'login')->name('login');

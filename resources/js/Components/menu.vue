@@ -1,8 +1,35 @@
 <template>
     <div>
-        <!-- start: Navbar -->
-        <nav class="px-3 py-2 bg-white rounded shadow-sm">
-            <i class="ri-menu-line sidebar-toggle me-3 d-block d-md-none"></i>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary px-3 py-2 bg-white rounded shadow-sm">
+            <div v-if="!user['name']" class="container-fluid">
+                <a class="navbar-brand" href="#">Loca+</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="nav-item-mobile collapse navbar-collapse  flex-row-reverse" id="navbarSupportedContent">
+                    <button href="#" class="btn btn-outline-dark btn-singn"><i class="fa-solid fa-user me-1"></i>Iniciar
+                        Sessão
+                    </button>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sobre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Ofertas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Para Empresas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="#">Duvidas</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav v-if="user['name']" class="px-3 py-2 bg-white rounded shadow-sm">
             <h5 class="fw-bold mb-0 me-auto">{{ pageTitle }}</h5>
             <div class="dropdown me-3 d-none d-sm-block">
                 <div class="cursor-pointer dropdown-toggle navbar-link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -54,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div class="dropdown">
+            <div v-if="user['name']" class="dropdown">
                 <div class="d-flex align-items-center cursor-pointer dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <span class="me-2 d-none d-sm-block"> {{ user['name'] }}</span>
@@ -92,3 +119,25 @@ onMounted(() => {
 const user = computed(() => storeUser.state.user)
 
 </script>
+
+<style>
+.nav-link {
+    color: black;
+}
+
+.nav-link:hover {
+    color: orange;
+}
+
+@media (max-width: 968px) {
+    .nav-item-mobile {
+        height: 200px;
+        position: relative;
+    }
+
+    .btn-singn {
+        position: absolute;
+        margin-top: 160px;
+    }
+}
+</style>
