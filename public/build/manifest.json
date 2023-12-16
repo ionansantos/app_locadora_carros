@@ -7,16 +7,26 @@
     "file": "assets/car-logo-reg.457fcf69.webp",
     "src": "resources/images/car-logo-reg.webp"
   },
+  "resources/images/banners-logos.png": {
+    "file": "assets/banners-logos.bd5aa602.png",
+    "src": "resources/images/banners-logos.png"
+  },
+  "resources/images/wallpaperHome.jpeg": {
+    "file": "assets/wallpaperHome.a03c5903.jpeg",
+    "src": "resources/images/wallpaperHome.jpeg"
+  },
   "resources/js/app.js": {
-    "file": "assets/app.7715d247.js",
+    "file": "assets/app.6b411c36.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app.41045d4d.css"
+      "assets/app.0f83cc7b.css"
     ],
     "assets": [
+      "assets/banners-logos.bd5aa602.png",
       "assets/car-logo.a17f34c2.webp",
-      "assets/car-logo-reg.457fcf69.webp"
+      "assets/car-logo-reg.457fcf69.webp",
+      "assets/wallpaperHome.a03c5903.jpeg"
     ]
   },
   "resources/css/app.css": {
@@ -25,7 +35,7 @@
     "isEntry": true
   },
   "resources/js/app.css": {
-    "file": "assets/app.41045d4d.css",
+    "file": "assets/app.0f83cc7b.css",
     "src": "resources/js/app.css"
   }
 }
