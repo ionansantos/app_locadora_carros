@@ -40,7 +40,7 @@ export default {
     width: 700px;
     max-width: 100%;
     height: 300px;
-    background-color: rgb(255, 183, 49);
+    background-color: rgb(255, 255, 255);
     margin: 0 auto;
     position: relative;
     top: 5%;
