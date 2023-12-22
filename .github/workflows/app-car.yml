@@ -43,8 +43,5 @@ jobs:
     - name: permissions public
       run: chmod -R 777 public/
 
-    - name: run migrations
-      run: php artisan migrate
-
     - name: Run tests
       run: vendor/bin/phpunit
