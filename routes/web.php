@@ -16,7 +16,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function() {
-    return view('welcome');
+    return redirect('home');
 });
 
 Route::inertia('/home', 'home')->name('home');
