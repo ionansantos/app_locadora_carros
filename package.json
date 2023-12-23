@@ -3,7 +3,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "heroku-build": "php artisan migrate && php artisan cache:clear && chmod -R 777 public"
+        "heroku-build": "npm install && npm run build"
     },
     "devDependencies": {
         "@vitejs/plugin-vue": "^3.2.0",
