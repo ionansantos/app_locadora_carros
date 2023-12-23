@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://locamais-6de27afff1a1.herokuapp.com'),
 
     'asset_url' => env('ASSET_URL', null),
 
