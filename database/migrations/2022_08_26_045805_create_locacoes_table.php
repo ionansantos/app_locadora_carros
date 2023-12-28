@@ -15,7 +15,7 @@ class CreateLocacoesTable extends Migration
     {
         Schema::create('locacoes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cliente_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('carro_id');
             $table->dateTime('data_inicio_periodo');
             $table->dateTime('data_final_previsto_periodo');
@@ -26,7 +26,7 @@ class CreateLocacoesTable extends Migration
             $table->timestamps();
 
             //foreign key (constraints)
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('carro_id')->references('id')->on('carros');
         });
     }

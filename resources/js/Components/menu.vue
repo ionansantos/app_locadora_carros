@@ -1,7 +1,7 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary px-3 py-2 bg-white rounded shadow-sm">
-            <div v-if="!user['name']" class="container-fluid">
+        <nav v-if="!user['name']" class="navbar navbar-expand-lg bg-body-tertiary px-3 py-2 bg-white rounded shadow-sm">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="#">Loca+</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
