@@ -1,11 +1,11 @@
 {
-  "resources/images/car-logo.webp": {
-    "file": "assets/car-logo.a17f34c2.webp",
-    "src": "resources/images/car-logo.webp"
-  },
   "resources/images/banners-logos.png": {
     "file": "assets/banners-logos.bd5aa602.png",
     "src": "resources/images/banners-logos.png"
+  },
+  "resources/images/car-logo.webp": {
+    "file": "assets/car-logo.a17f34c2.webp",
+    "src": "resources/images/car-logo.webp"
   },
   "resources/images/car-logo-reg.webp": {
     "file": "assets/car-logo-reg.457fcf69.webp",
@@ -16,7 +16,7 @@
     "src": "resources/images/wallpaperHome.jpeg"
   },
   "resources/js/app.js": {
-    "file": "assets/app.72fe592d.js",
+    "file": "assets/app.3532ec1d.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [

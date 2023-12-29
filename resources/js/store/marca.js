@@ -1,8 +1,10 @@
-import { createStore } from 'vuex';
-import axios from '../plugins/axios';
+import { createStore } from "vuex";
+import axios from "../plugins/axios";
 import { createToaster } from "@meforma/vue-toaster";
 
-const toaster = createToaster({ /* options */ });
+const toaster = createToaster({
+    /* options */
+});
 
 const store = createStore({
     state: {
@@ -15,22 +17,23 @@ const store = createStore({
     },
     actions: {
         fetchMarcas({ commit }) {
-            return axios.get('/marca')
-            .then(response => {
-                console.log(response.data);
-                    commit('setMarcas', response.data);
+            return axios
+                .get("/marcas")
+                .then((response) => {
+                    console.log(response.data);
+                    commit("setMarcas", response.data);
                     // Redirecionar para a dashboard
                     // window.location.href = '/dashboard';
                     // return true;
-                return false;
-            })
-            .catch(error => {
-                toaster.error(error.response.data.message, {
-                    duration: 4000,
-                    position: "bottom-right",
+                    return false;
+                })
+                .catch((error) => {
+                    toaster.error(error.response.data.message, {
+                        duration: 4000,
+                        position: "bottom-right",
+                    });
+                    return false;
                 });
-                return false;
-            });
         },
     },
 });

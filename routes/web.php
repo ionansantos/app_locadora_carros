@@ -26,14 +26,18 @@ Route::inertia('/login', 'login')->name('login');
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
-    // rota perfil usuario
+    // rota perfil usuario admin
+    Route::inertia('/marca', 'marcas');
     Route::inertia('/perfil', 'perfil');
 
     Route::inertia('/dashboard', 'dashboard');
-    Route::inertia('/marcas', 'marcas');
-    Route::inertia('/modelos', 'modelos');
     Route::inertia('/carros', 'carros');
     Route::inertia('/locacoes', 'locacoes');
+    Route::inertia('/modelo', 'modelos');
+
+    // rota perfil usuario cliente
+    Route::inertia('/homecliente', 'client/homecliente');
+
 });
 
 

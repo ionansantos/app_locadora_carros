@@ -14,7 +14,7 @@
             </li>
             <li class="sidebar-menu-divider mt-3 mb-1 text-uppercase">Custom</li>
             <li class="sidebar-menu-item">
-                <a href="/modelos">
+                <a href="/modelo">
                     <i class="ri-award-line sidebar-menu-item-icon"></i>
                     Modelos
                     <!-- <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i> -->
@@ -138,7 +138,7 @@
                     </ul> -->
             </li>
             <li class="sidebar-menu-item">
-                <a href="/marcas">
+                <a href="/marca">
                     <i class="ri-honour-line sidebar-menu-item-icon"></i>
                     Marcas
                     <!-- <i class="ri-arrow-down-s-line sidebar-menu-item-accordion ms-auto"></i> -->

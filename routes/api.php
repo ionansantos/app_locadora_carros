@@ -24,26 +24,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route::get('/login', [AuthController::class, 'create'])->name('login');
 
-Route::post('login', [AuthController::class, 'store']);
+Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'createUser']);
 
 Route::middleware('auth:sanctum')->group(function(){   
 
     Route::post('logout', [AuthController::class, 'logout']);
 
-    Route::get('marca', [MarcaController::class, 'index']);
+    Route::get('marcas', [MarcaController::class, 'index']);
     Route::get('marca/get/{id}', [MarcaController::class, 'show']);
     Route::post('marca/create', [MarcaController::class, 'store']);
     Route::post('marca/update/{id}', [MarcaController::class, 'update']);
     Route::delete('marca/delete/{id}', [MarcaController::class, 'destroy']);
 
-    Route::get('modelo', [ModeloController::class, 'index']);
+    Route::get('modelos', [ModeloController::class, 'index']);
     Route::get('modelo/get/{id}', [ModeloController::class, 'show']);
     Route::post('modelo/create', [ModeloController::class, 'store']);
     Route::post('modelo/update/{id}', [ModeloController::class, 'update']);
     Route::delete('modelo/delete/{id}', [ModeloController::class, 'destroy']);
 
-    Route::get('carro', [CarroController::class, 'index']);
+    Route::get('carros', [CarroController::class, 'index']);
     Route::get('carro/get/{id}', [CarroController::class, 'show']);
     Route::post('carro/create', [CarroController::class, 'store']);
     Route::post('carro/update/{id}', [CarroController::class, 'update']);

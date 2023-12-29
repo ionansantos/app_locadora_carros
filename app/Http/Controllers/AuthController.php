@@ -55,7 +55,7 @@ class AuthController extends Controller
      * @param Request $request
      * @return User
      */
-    public function store(AuthLoginRequest $request)
+    public function login(AuthLoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
 
