@@ -93,8 +93,7 @@
                     <li><a class="dropdown-item" href="/perfil">Perfil</a></li>
                     <!-- <li><a class="dropdown-item" href="#">Editar</a></li> -->
                     <li>
-                        <Link href="/api/logout" method="post" as="button" type="button" class="dropdown-item">Logout
-                        </Link>
+                        <Link @click="logout" class="dropdown-item" role="button">Logout</Link>
                     </li>
                 </ul>
             </div>
@@ -102,9 +101,9 @@
     </div>
 </template>
 <script setup>
-import { useStore, createStore } from 'vuex';
+// import { useStore, createStore } from 'vuex';
+// import axios from '../plugins/axios';
 import { Link } from '@inertiajs/vue3'
-import axios from '../plugins/axios';
 import { ref, watch, onMounted, computed, defineProps } from 'vue'
 import storeUser from '../store/user'
 
@@ -117,6 +116,10 @@ onMounted(() => {
 })
 
 const user = computed(() => storeUser.state.user)
+
+const logout = async () => {
+    await storeUser.dispatch('logout');
+};
 
 </script>
 

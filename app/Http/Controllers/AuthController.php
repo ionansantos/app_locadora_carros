@@ -87,12 +87,16 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::guard('sanctum')->user()->tokens()->delete();
+        try {
+            Auth::guard('sanctum')->user()->tokens()->delete();
+            
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
-        $request->session()->invalidate();
-        
-        $request->session()->regenerateToken();
-        
-        return redirect('/');
+            return $this->ResponseDataObject->response();
+        } catch (\Exception $e) {
+
+            return response()->json(['error' => 'Erro durante o logout'], 500);
+        }
     }
 }

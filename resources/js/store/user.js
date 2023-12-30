@@ -48,6 +48,20 @@ const store = createStore({
                 });
         },
 
+        async logout() {
+            try {
+                const response = await axios.post("/logout");
+
+                if (response.data.type === "success") {
+                    window.location.href = "/";
+                }
+                return false;
+            } catch (error) {
+                console.error("Erro durante o logout", error);
+                return false;
+            }
+        },
+
         getUser({ commit }) {
             return axios
                 .get("/user")
