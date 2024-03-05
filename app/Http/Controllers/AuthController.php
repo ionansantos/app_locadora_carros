@@ -91,7 +91,6 @@ class AuthController extends Controller
             Auth::guard('sanctum')->user()->tokens()->delete();
             
             $request->session()->invalidate();
-            $request->session()->regenerateToken();
 
             return $this->ResponseDataObject->response();
         } catch (\Exception $e) {
