@@ -1,53 +1,49 @@
 services:
-  app:
+  locamais:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: app
     ports:
-      - "80:80"
+      - 80:8000
+      - 5173:5173
     volumes:
-      - ".:/var/www"
+      - ./:/var/www/
     networks:
-      - default
-    depends_on:
-      - db
-    links:
-      - db
-  db:
-    image: "mysql:8.0"
-    container_name: database
+      - locamais
+    tty: true
+    container_name: locamais
+
+  mysql_locamais:
+    image: mariadb:10.3
+    entrypoint: docker-entrypoint.sh --sql-mode='STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
     ports:
-      - "3366:3306"
+      - 3306:3306
+    networks:
+      - locamais
     environment:
-      MYSQL_ROOT_HOST: "${DB_HOST}"
-      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
-      MYSQL_DATABASE: "${DB_DATABASE}"
-      MYSQL_USER: "${DB_USERNAME}"
-      MYSQL_PASSWORD: "${DB_PASSWORD}"
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=123456
+      - MYSQL_DATABASE=locamais
+    container_name: mysql_locamais
     volumes:
-      - "/var/lib/mysql"
-      - "./apache/:/docker-entrypoint-initdb.d"
-      - "/var/www/storage/app/public/imagens:/var/www/storage/app/public/imagens"
-    networks:
-      - default
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
-      retries: 3
-      timeout: 5s
-  phpmyadmin:
-    image: phpmyadmin
-    restart: always
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin_locamais:
+    image: beeyev/phpmyadmin-lightweight
     ports:
-      - 8080:80
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_PASSWORD=1234
-    links:
-      - db
+      - 8181:80
     networks:
-      - default
+      - locamais
+    environment:
+      PMA_HOST: mysql_locamais
+      PMA_THEME: BooDark
+      UPLOAD_LIMIT: 2000M
+    container_name: phpmyadmin_locamais
+
 networks:
-  default:
-    driver: bridge
+  locamais:
+    external: true
+
+volumes:
+  mysql_data:
