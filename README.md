@@ -1,7 +1,11 @@
 ## Configurando Projeto
 
 ```
-   cp .env.example .env
+    cp .env.example .env
+```
+
+```
+    docker network create locamais_network
 ```
 
 ```
