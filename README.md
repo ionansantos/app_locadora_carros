@@ -1,6 +1,10 @@
 ## Configurando Projeto
 
 ```
+   npm install
+```
+
+```
     cp .env.example .env
 ```
 
@@ -26,10 +30,6 @@
 
 ```
    php artisan migrate
-```
-
-```
-   npm install
 ```
 
  acesse em: (http://localhost)
