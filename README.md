@@ -1,6 +1,20 @@
 ## Configurando Projeto
-  - composer install
-  - docker compose up -d --build "se necessário use o sudo"
+
+```
+    docker compose up -d
+```
+
+```
+    docker compose exec app bash
+```
+
+```
+   composer install
+```
+
+```
+    php artisan key:generate
+```
 
 ## Env
 copie o arquivo .env-example renomeando para .env
