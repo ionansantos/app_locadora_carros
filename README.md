@@ -24,6 +24,10 @@
    php artisan migrate
 ```
 
+```
+   npm install
+```
+
  acesse em: (http://localhost)
 
 
