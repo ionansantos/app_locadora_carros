@@ -5,7 +5,7 @@
 ```
 
 ```
-    docker network create locamais_network
+   docker network create locamais
 ```
 
 ```
