@@ -36,6 +36,10 @@
    php artisan db:seed
 ```
 
+```
+  php artisan storage:link
+```
+
  acesse em: (http://localhost)
 
 
