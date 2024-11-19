@@ -1,6 +1,7 @@
-FROM php:8.1-apache
+FROM php:8.1-fpm
 
-ARG user=user
+# set your user name, ex: user=carlos
+ARG user=yourusername
 ARG uid=1000
 
 RUN apt-get update && apt-get install -y \
@@ -13,18 +14,21 @@ RUN apt-get update && apt-get install -y \
     unzip
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable mysqli pdo pdo_mysql
 
-COPY --from=composer/composer /usr/bin/composer /usr/bin/composer
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd sockets
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
+RUN pecl install -o -f redis \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable redis
+
 WORKDIR /var/www
 
-RUN cd /etc/apache2/mods-available && a2enmod rewrite
-COPY /apache/apache2.conf /etc/apache2/apache2.conf
-COPY /apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
 
 USER $user
