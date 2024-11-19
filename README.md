@@ -17,7 +17,7 @@
 ```
 
 ```
-    docker compose exec locamais bash
+    docker compose exec app bash
 ```
 
 ```
